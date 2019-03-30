@@ -47,3 +47,4 @@ def filter(args, split):
 if __name__ == "__main__":
 
 	args = get_args()
+	filter(args, 'train')
