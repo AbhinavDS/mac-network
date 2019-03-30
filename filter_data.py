@@ -10,6 +10,7 @@ import h5py
 import argparse
 from tqdm import tqdm
 import json
+import os
 
 def get_args():
 
@@ -26,7 +27,7 @@ def filter(args, split):
 	"""
 	
 	# first filter the train file
-	data_path = os.path.join(args.data, "{}_{}.json".format(args.dataset, split))
+	data_path = os.path.join(args.data, "{}_{}_data.json".format(args.dataset, split))
 
 	with open(data_path, 'r') as f:
 		data = json.load(f)
@@ -35,13 +36,13 @@ def filter(args, split):
 
 	filtered_data = {'questions': []}
 
-	filtered_data['questions'] = [x for x in data['questions'] and x['type'] == 'query']
+	filtered_data['questions'] = [x for x in data['questions'] if x['type'] == 'query']
 
 	print(len(filtered_data['questions']))
 	
 	images = [ x['imageId'] for x in filtered_data['questions'] ] 
 	
-	print(len(images))
+	print(len(set(images)))
 	return images
 
 if __name__ == "__main__":
