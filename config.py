@@ -28,23 +28,23 @@ class Config(object):
     dictNpyFilename = "{name}Embs.npy"
     
     ## experiment files
-    expPathname = "{expName}"
+    expPathname = "../{expName}"
     expName = "" #  will be assigned through argparse
 
-    weightsPath = "./"
+    weightsPath = "../{expName}/"
     weightsFilename = "weights{epoch}.ckpt"
 
     # model predictions and optionally attention maps
-    predsPath = "./preds"
+    predsPath = "../{expName}/preds"
     predsFilename = "{tier}Predictions-{expName}.json"
     answersFilename = "{tier}Answers-{expName}.txt"
 
     # logging of accuracy, loss etc. per epoch
-    logPath = "./results"
+    logPath = "../{expName}/results"
     logFilename = "results-{expName}.csv"
 
     # configuration file of the used flags to run the experiment
-    configPath = "./results"
+    configPath = "../{expName}/results"
     configFilename = "config-{expName}.json"
 
     def toString(self):
