@@ -3,3 +3,7 @@ venv/*
 
 # Ignore data folder
 data/*
+
+# Ignore pycache
+*/__pycache__/*
+
