@@ -37,7 +37,7 @@ def filter(args, split):
 
 	filtered_data['questions'] = [x for x in data['questions'] and x['type'] == 'query']
 
-	print len(filtered_data['questions'])
+	print(len(filtered_data['questions']))
 	
 	images = [ x['imageId'] for x in filtered_data['questions'] ] 
 	
