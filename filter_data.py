@@ -105,9 +105,10 @@ def filter_qa(split, args):
 if __name__ == "__main__":
 
 	args = get_args()
-	train_images = filter('train', args)
-	val_images = filter('val', args)
+	train_images = filter_qa('train', args)
+	val_images = filter_qa('val', args)
 
 	images = train_images + val_images
 
+	filter_img_feats(images, args)
 
