@@ -41,8 +41,8 @@ def filter_img_feats(images, args):
 		
 		inp_file_path = os.path.join(args.data, "gqa_{}.h5".format(fname))
 		out_file_path = os.path.join(args.out_data, "gqa_{}.h5".format(fname))
-		inp_info_file_path = os.path.join(args.data, "gqa_{}_merged_info.h5".format(fname))
-		out_info_file_path = os.path.join(args.out_data, "gqa_{}_merged_info.h5".format(fname))
+		inp_info_file_path = os.path.join(args.data, "gqa_{}_merged_info.json".format(fname))
+		out_info_file_path = os.path.join(args.out_data, "gqa_{}_merged_info.json".format(fname))
 
 		idx = 0
 
