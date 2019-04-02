@@ -11,6 +11,7 @@ import argparse
 from tqdm import tqdm
 import json
 import os
+import numpy as np
 
 def get_args():
 
@@ -94,9 +95,16 @@ def filter_qa(split, args):
 
 	filtered_data['questions'] = [x for x in data['questions'] if x['type'] == 'query']
 
-	print("No of QA pairs: ", len(filtered_data['questions']))
+	sample_sz = 0.1*len(filtered_data['questions'])
+	permut = np.random.permutation(len(filtered_data['questions'])).tolist()[:sample_sz]
+
+	sample_data = {'questions': []}
+	for idx in permut:
+		sample_data['questions'].append(filtered_data['questions'][idx])
+
+	print("No of QA pairs: ", len(sample_data['questions']))
 	
-	images = [ x['imageId'] for x in filtered_data['questions'] ] 
+	images = [ x['imageId'] for x in sample_data['questions'] ] 
 	
 	print("No of Images: ", len(set(images)))
 
