@@ -60,16 +60,16 @@ def filter_img_feats(images, args):
 		with h5py.File(out_file_path) as out:
 			datasets  = {}
 			for dname in spec[fname]:
-				datasets[dname] = out.create_dataset(dname, spec[args.name][dname])
+				datasets[dname] = out.create_dataset(dname, spec[fname][dname])
 
 			with h5py.File(inp_file_path) as feats:
 				for i in tqdm(range(img_sz)):
 					
-					for dname in spec[args.name]:
+					for dname in spec[fname]:
 						datasets[dname][idx] = feats[dname][info[images[i]]['index']]
 					
 					# Update the Index in the information object
-					info[images[i]['index']] = idx
+					info[images[i]]['index'] = idx
 					idx += 1
 
 		print("Final Index", idx)
