@@ -95,8 +95,9 @@ def filter_qa(split, args):
 
 	filtered_data['questions'] = [x for x in data['questions'] if x['type'] == 'query']
 
-	sample_sz = 0.1*len(filtered_data['questions'])
-	permut = np.random.permutation(len(filtered_data['questions'])).tolist()[:sample_sz]
+	sample_sz = int(0.1*len(filtered_data['questions']))
+	permut = np.random.permutation(len(filtered_data['questions'])).tolist()
+	permut = permut[:sample_sz]
 
 	sample_data = {'questions': []}
 	for idx in permut:
@@ -107,6 +108,9 @@ def filter_qa(split, args):
 	images = [ x['imageId'] for x in sample_data['questions'] ] 
 	
 	print("No of Images: ", len(set(images)))
+
+	with open(os.path.join(args.out_data, '{}_{}_data.json'.format(args.dataset, split)), 'w') as f:
+		json.dump(sample_data, f)
 
 	return list(set(images))
 
