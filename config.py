@@ -83,10 +83,10 @@ class Config(object):
     ## experiment files
     expPath     = lambda self: self.expPathname.format(expName = self.toString())
     
-    weightsDir  = lambda self: self.makedirs(self.weightsPath)
-    predsDir    = lambda self: self.makedirs(self.predsPath)
-    logDir      = lambda self: self.makedirs(self.logPath)
-    configDir   = lambda self: self.makedirs(self.configPath)
+    weightsDir  = lambda self: self.makedirs(self.weightsPath.format(expName = self.toString()))
+    predsDir    = lambda self: self.makedirs(self.predsPath.format(expName = self.toString()))
+    logDir      = lambda self: self.makedirs(self.logPath.format(expName = self.toString()))
+    configDir   = lambda self: self.makedirs(self.configPath.format(expName = self.toString()))
 
     weightsFile     = lambda self, epoch: os.path.join(self.weightsDir(), self.weightsFilename.format(epoch = str(epoch)))
     predsFile       = lambda self, tier: os.path.join(self.predsDir(), self.predsFilename.format(tier = tier, expName = self.expName))
