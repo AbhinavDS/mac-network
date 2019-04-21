@@ -7,3 +7,6 @@ data/
 # Ignore pycache
 __pycache__
 
+#Ignore generated files
+*.json
+
